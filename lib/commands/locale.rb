@@ -2,24 +2,18 @@ module Visjar
   module Commands
     class Locale
       def self.run(client, slack, recast)
-        recast = recast['sentences'].first
-
         # Get informations about the request
-        @nationality = recast['entities']['nationality'].first rescue nil
-        @language    = recast['entities']['language'].first rescue nil
+        @language = recast.get('nationality') || recast.get('language')
 
-        if @nationality
-          Config.locale = @nationality['code']
-          client.send_message(slack['channel'], "Thanks, you'll now receive the news in '#{@nationality['raw'].capitalize}'.")
-        elsif @language
-          Config.locale = @language['code']
-          client.send_message(slack['channel'], "Thanks, you'll now receive the news in '#{@language['raw'].capitalize}'.")
+        if @language.nil?
+          client.send_message(slack['channel'], 'Woops, are you sure you provided your language?')
         else
-          client.send_message(slack['channel'], "Woops, are you sure you provided your language?")
+          Config.language = @language
+          client.send_message(slack['channel'], "Thanks, you'll now receive the news in '#{@language.raw.capitalize}'.")
         end
       end
 
-      Commands::register("locale", self)
+      Commands.register('locale', self)
     end
   end
 end

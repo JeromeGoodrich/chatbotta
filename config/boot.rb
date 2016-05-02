@@ -1,17 +1,17 @@
 # Don't change this file!
 # Configure your daemon in config/environment.rb
 
-DAEMON_ROOT = "#{File.expand_path(File.dirname(__FILE__))}/.." unless defined?(DAEMON_ROOT)
+DAEMON_ROOT = "#{File.expand_path(File.dirname(__FILE__))}/.." unless defined?(DAEMON_ROOT) # rubocop:disable Style/MutableConstant
 
-require "rubygems"
-require "bundler/setup"
+require 'rubygems'
+require 'bundler/setup'
 
 module DaemonKit
   class << self
     def boot!
-      unless booted?
-        GemBoot.new.run
-      end
+      return if booted?
+
+      GemBoot.new.run
     end
 
     def booted?
@@ -28,14 +28,14 @@ module DaemonKit
 
   class GemBoot < Boot
     def load_initializer
-      begin
-        require 'rubygems' unless defined?(::Gem)
-        gem 'daemon-kit'
-        require 'daemon_kit/initializer'
-      rescue ::Gem::LoadError
-        $stderr.puts "You are missing the daemon-kit gem. Please run 'sudo gem install daemon-kit'"
-        exit 1
-      end
+      require 'rubygems' unless defined?(::Gem)
+
+      gem 'daemon-kit'
+
+      require 'daemon_kit/initializer'
+    rescue ::Gem::LoadError
+      $stderr.puts "You are missing the daemon-kit gem. Please run 'sudo gem install daemon-kit'"
+      exit 1
     end
   end
 end

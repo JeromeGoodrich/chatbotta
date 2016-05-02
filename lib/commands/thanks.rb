@@ -1,13 +1,13 @@
 module Visjar
   module Commands
     class Thanks
-      @answers  = YAML.load_file(File.join(File.dirname(__FILE__), '../../config/answers.yml'))['thanks']
+      @answers = YAML.load_file(File.join(File.dirname(__FILE__), '../../config/answers.yml'))['thanks']
 
-      def self.run(client, slack, recast)
+      def self.run(client, slack, _)
         client.send_message(slack['channel'], @answers.sample)
       end
 
-      Commands::register("thanks", self)
+      Commands.register('thanks', self)
     end
   end
 end

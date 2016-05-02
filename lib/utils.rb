@@ -1,15 +1,18 @@
-#encoding: utf-8
+# encoding: utf-8
 
 module Visjar
   class Utils
     # Versioning
-    MAJOR   = "0"
-    MINOR   = "3"
-    MICRO   = "0"
-    VERSION = "#{MAJOR}.#{MINOR}.#{MICRO}"
+    MAJOR   = '0'.freeze
+    MINOR   = '3'.freeze
+    MICRO   = '0'.freeze
+    VERSION = "#{MAJOR}.#{MINOR}.#{MICRO}".freeze
+
+    # Endpoints
+    RECAST_ENDPOINT = 'https://api.recast.ai/v1/request'.freeze
 
     # Dirty hack because RecastAI can't detect food types just yet :(
-    TYPES   = [
+    TYPES = [
       'pizza',
       'crepe',
       'creperie',
@@ -30,7 +33,7 @@ module Visjar
       'vegan',
       'vegetarian',
       'meat'
-    ]
+    ].freeze
   end
 end
 
@@ -41,7 +44,7 @@ module Slack
       # The realtime client allow us to work on events, but we couldn't make the text formatting work.
       # Thus, we are using the web_client for message formatting.
       def send_message(channel, text, options = {})
-        self.web_client.chat_postMessage({channel: channel, text: text, as_user: true}.merge(options))
+        self.web_client.chat_postMessage({ channel: channel, text: text, as_user: true }.merge(options))
       end
 
       # This patch allows us to bind several events with one call

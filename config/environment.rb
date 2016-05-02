@@ -5,6 +5,7 @@ require File.join(File.dirname(__FILE__), 'boot')
 
 # Auto-require default libraries and those for the current ruby environment
 Bundler.require(:default, DaemonKit.env)
+
 require 'active_support/inflector'
 require 'yaml'
 
@@ -14,16 +15,16 @@ require 'config'
 p = YAML.load_file(File.join(File.dirname(__FILE__), '/parameters.yml'))[DaemonKit.env]
 
 # Check mandatory tokens
-raise(ArgumentError, "RecastAI token is mandatory") if p['recast_key'] == nil
-raise(ArgumentError, "Slack token is mandatory")    if p['slack_key'] == nil
+raise(ArgumentError, 'RecastAI token is mandatory') if p['recast_key'].nil?
+raise(ArgumentError, 'Slack token is mandatory')    if p['slack_key'].nil?
 
 # Configure Visjar
 Visjar::Config.configure do |config|
   config.google_key = p['google_key']
   config.google_cx  = p['google_cx']
   config.recast_key = p['recast_key']
-  config.location   = p['location']
-  config.locale     = p['locale']
+  config.location   = RecastAI::Entity.new('location', p['location'])
+  config.language   = RecastAI::Entity.new('language', p['language'])
   config.limit_eat  = p['limit_eat']
   config.limit_news = p['limit_news']
 end
@@ -53,6 +54,8 @@ require 'commands/greetings'
 require 'commands/goodbyes'
 require 'commands/feelings'
 require 'commands/thanks'
+require 'commands/compliments'
+require 'commands/insults'
 require 'commands/help'
 require 'commands/weather'
 require 'commands/search'

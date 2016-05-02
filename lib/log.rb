@@ -1,8 +1,9 @@
-#encoding: utf-8
+# encoding: utf-8
 
 module Visjar
   class Log
     @before = []
+
     class << self
       def debug(message, timed = :none)
         log(:debug, message, timed)
@@ -25,19 +26,22 @@ module Visjar
       end
 
       private
+
       def log(level, message, timed)
         return if DaemonKit.test?
 
+        # Set timers
         if timed == :begin
           @before.push(Time.now)
-        elsif timed == :end and @before.any?
-          message << " (#{(Time.now - @before.shift).round(4)}s)"
+        elsif timed == :end && @before.any?
+          message << " (#{(Time.now - @before.pop).round(4)}s)"
         end
 
+        # Real log
         if DaemonKit.logger.nil?
-          puts "[#{level.to_s}] #{message}"
+          puts "[#{level}] #{message}"
         else
-          DaemonKit.logger.send(level.to_sym, ActiveSupport::Inflector.transliterate("#{message}", "x"))
+          DaemonKit.logger.send(level.to_sym, ActiveSupport::Inflector.transliterate(message, 'x'))
         end
       end
     end

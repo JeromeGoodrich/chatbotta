@@ -1,13 +1,13 @@
 module Visjar
   module Commands
     class Goodbyes
-      @answers  = YAML.load_file(File.join(File.dirname(__FILE__), '../../config/answers.yml'))['goodbyes']
+      @answers = YAML.load_file(File.join(File.dirname(__FILE__), '../../config/answers.yml'))['goodbyes']
 
-      def self.run(client, slack, recast)
+      def self.run(client, slack, _)
         client.send_message(slack['channel'], @answers.sample)
       end
 
-      Commands::register("goodbyes", self)
+      Commands.register('goodbyes', self)
     end
   end
 end
