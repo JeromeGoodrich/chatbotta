@@ -3,8 +3,8 @@
 module Visjar
   class Utils
     # Versioning
-    MAJOR   = '0'.freeze
-    MINOR   = '3'.freeze
+    MAJOR   = '1'.freeze
+    MINOR   = '0'.freeze
     MICRO   = '0'.freeze
     VERSION = "#{MAJOR}.#{MINOR}.#{MICRO}".freeze
 
