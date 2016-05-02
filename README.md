@@ -34,8 +34,8 @@ The workflow inside Visjar is as follows:
 
 Here's the list of the currently implemented commands:
 
-* Salutations (Greetings, Goodbyes, Feelings, Thanks, Help)
-* Settings (location for weather cast and restaurant finding, locale for the news)
+* Default politeness (Greetings, Goodbyes, Feelings, Thanks, Help, Compliments, Insults)
+* Settings (location for weather cast and restaurant finding, language for the news)
 * Weather cast
 * Restaurant finding
 * News
@@ -45,7 +45,7 @@ Here's the list of the currently implemented commands:
 ## Configuration
 
 Most of the configuration must be done in the `parameters.yml` file in order to have a default visjar working.
-Visjar is relying on many APIs to provide you those commands, and here's a breakdown of what command uses which API:
+Visjar is relying on several APIs to provide you those commands, and here's a breakdown of what command uses which API:
 
 
 The `eat` command uses Google Geocoding, Google Places and Google Static Maps.
@@ -76,9 +76,10 @@ Tell a joke.
 ## Dependencies
 
 * [Daemon-kit](https://github.com/RecastAI/daemonkit) and [safely](https://github.com/kennethkalmer/safely) are used to provide an easy daemon setup.
-* [slack-ruby-client](https://github.com/dblock/slack-ruby-client), [faye-websocket](https://github.com/faye/faye-websocket-ruby), [HTTParty](https://github.com/jnunemaker/httparty) and [forecast_io](https://github.com/darkskyapp/forecast-ruby) are used to consume the APIs (RecastAI, Slack, Forecast.io, Google Places, Google Maps, etc.).
-* [activesupport](https://github.com/rails/rails/tree/master/activesupport), [chronic](https://github.com/mojombo/chronic) and [time_difference](https://github.com/tmlee/time_difference) are used to do data processing.
+* [RecastAI](https://github.com/RecastAI/SDK-ruby), [slack-ruby-client](https://github.com/dblock/slack-ruby-client), [faye-websocket](https://github.com/faye/faye-websocket-ruby), [HTTParty](https://github.com/jnunemaker/httparty) and [forecast_io](https://github.com/darkskyapp/forecast-ruby) are used to consume the APIs (RecastAI, Slack, Forecast.io, Google Places, Google Maps, etc.).
+* [activesupport](https://github.com/rails/rails/tree/master/activesupport) is used for code lazyness.
 * [awesome_print](https://github.com/michaeldv/awesome_print) is used for debugging.
+* [rubocop](https://github.com/bbatsov/rubocop) is used for code consistency.
 
 ## Contributing
 

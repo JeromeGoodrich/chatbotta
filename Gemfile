@@ -19,5 +19,7 @@ end
 group :development do
   # Debug
   gem 'awesome_print'
+
+  # Lint
   gem 'rubocop'
 end
