@@ -5,7 +5,7 @@ module Visjar
     # Versioning
     MAJOR   = '1'.freeze
     MINOR   = '0'.freeze
-    MICRO   = '0'.freeze
+    MICRO   = '1'.freeze
     VERSION = "#{MAJOR}.#{MINOR}.#{MICRO}".freeze
 
     # Endpoints
