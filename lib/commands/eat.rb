@@ -7,7 +7,7 @@ module Visjar
       def self.run(client, slack, recast)
         # Get informations about the request, or fallbacks if nil
         @location = recast.get('location') || Config.location
-        @sort     = recast.get('sort') || { 'value' => nil, 'raw' => nil }
+        @sort     = recast.get('sort') || RecastAI::Entity.new('sort', { 'value' => nil, 'raw' => nil })
         @type     = get_type(recast.source) || 'restaurant'
 
         # Notify the user of the current research.

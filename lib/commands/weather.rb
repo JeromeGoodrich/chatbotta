@@ -38,16 +38,6 @@ module Visjar
         # Datetime
         text << @datetime.raw.capitalize
 
-        # Conjugation
-        text << case recast['tense']
-                when 'past'
-                  ' it was'
-                when 'future'
-                  ' it will be'
-                else
-                  ' it is'
-                end
-
         # Temperature
         text << " #{forecast.temperature.to_f.round(1)}°C"
 
