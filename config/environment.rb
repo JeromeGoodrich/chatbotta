@@ -23,6 +23,7 @@ Visjar::Config.configure do |config|
   config.google_key = p['google_key']
   config.google_cx  = p['google_cx']
   config.recast_key = p['recast_key']
+  config.wolfram_key = p['wolfram_key']
   config.location   = RecastAI::Entity.new('location', p['location'])
   config.language   = RecastAI::Entity.new('language', p['language'])
   config.limit_eat  = p['limit_eat']
@@ -64,3 +65,4 @@ require 'commands/eat'
 require 'commands/location'
 require 'commands/locale'
 require 'commands/up'
+require 'commands/wolfram'

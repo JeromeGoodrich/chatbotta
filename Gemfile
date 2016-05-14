@@ -14,6 +14,7 @@ group :default do
 
   # Utils
   gem 'activesupport', require: 'active_support'
+  gem 'xmlparser', '~> 0.7.2.1'
 end
 
 group :development do

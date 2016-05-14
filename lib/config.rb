@@ -6,6 +6,7 @@ module Visjar
       attr_accessor :recast_key
       attr_accessor :slack_key
       attr_accessor :forecast_key
+      attr_accessor :wolfram_key
       attr_accessor :location
       attr_accessor :language
       attr_accessor :limit_eat, :limit_news

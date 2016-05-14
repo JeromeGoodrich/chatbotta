@@ -6,9 +6,9 @@ base: &base
     # Your Forecast.io key
     forecast_key:
     # Your Recast.AI key
-    recast_key:
+    recast_key: 'ffe24534b5829f32cec9a2ffb444e964'
     # Your Slack key
-    slack_key:
+    slack_key: 'xoxb-42988886839-NSaMxXsXg1kGUW38o5ymOVot'
     # Your location (used as fallback)
     location:     { formated: 'Paris, Paris, Île-de-France, France', lat: 48.856614, lng: 2.3522219, raw: 'Paris' }
     # Your locale (used as fallback)
